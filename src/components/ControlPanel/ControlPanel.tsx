@@ -3,21 +3,10 @@ import { Box, Button, Paper } from "@mui/material";
 import { ItemFigurePanel } from "./ItemFigurePanel";
 import { ButtonsPanel } from "./ButtonsPanel";
 import AddFigureGroup from "./AddFigureGroup";
-import { ApplicationStatus } from "../../App";
-interface ApplicationStatusContextType {
-  showFormPrimitiv: boolean;
-  setShowFormPrimitiv: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { useShowForm } from "../Provider/ApplicationProvider";
+
 export const ControlPanel = () => {
-  const context = useContext<ApplicationStatusContextType | undefined>(
-    ApplicationStatus
-  );
-  if (!context) {
-    throw new Error(
-      "ButtonsPanel must be used within a ApplicationStatusProvider"
-    );
-  }
-  const { showFormPrimitiv } = context;
+  const { showFormPrimitiv } = useShowForm();
 
   return (
     <Paper
@@ -36,8 +25,13 @@ export const ControlPanel = () => {
         <ItemFigurePanel color="yellow" title="Box 2" position="0, 1, 0" />
         <ItemFigurePanel color="green" title="Box 3" position="1, 0, 0" />
       </div>
-      <ButtonsPanel />
-      {showFormPrimitiv && <AddFigureGroup />}
+      <Box sx={{
+        display: "inline-block",
+        
+      }}>
+        {showFormPrimitiv && <AddFigureGroup />}
+        <ButtonsPanel />
+      </Box>
     </Paper>
   );
 };

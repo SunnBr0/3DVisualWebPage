@@ -1,20 +1,9 @@
 import { Box, Button } from "@mui/material";
 import React, { useContext } from "react";
-import { ApplicationStatus } from "../../App";
-interface ApplicationStatusContextType {
-  showFormPrimitiv: boolean;
-  setShowFormPrimitiv: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { useShowForm } from "../Provider/ApplicationProvider";
+
 export const ButtonsPanel = () => {
-  const context = useContext<ApplicationStatusContextType | undefined>(
-    ApplicationStatus
-  );
-  if (!context) {
-    throw new Error(
-      "ButtonsPanel must be used within a ApplicationStatusProvider"
-    );
-  }
-  const { setShowFormPrimitiv } = context;
+ const {setShowFormPrimitiv} = useShowForm();
   return (
     <Box
       display="flex"

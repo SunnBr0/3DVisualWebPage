@@ -14,7 +14,7 @@ const AddFigureGroup = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ padding: 2, maxWidth: 400, margin: "auto" }}>
+    <Paper elevation={3} sx={{ padding: 2, maxWidth: 400, margin: "auto" ,position:"relative",left:"350px",zIndex:"1"}}>
       <Typography variant="h6" gutterBottom>
         Add primitives group
       </Typography>
