@@ -3,7 +3,8 @@ import { Box, Button, Paper } from "@mui/material";
 import { ItemFigurePanel } from "./ItemFigurePanel";
 import { ButtonsPanel } from "./ButtonsPanel";
 import AddFigureGroup from "./AddFigureGroup";
-import { useShowForm } from "../Provider/ApplicationProvider";
+import { useShowForm } from "../Hooks/ShowForm";
+
 
 export const ControlPanel = () => {
   const { showFormPrimitiv } = useShowForm();

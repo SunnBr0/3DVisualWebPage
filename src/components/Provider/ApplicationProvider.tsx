@@ -1,33 +1,12 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
-
-interface ApplicationStatusContextType {
-  showFormPrimitiv: boolean;
-  setShowFormPrimitiv: Dispatch<SetStateAction<boolean>>;
-}
-
-export const FormStatus = createContext<
-  ApplicationStatusContextType | undefined
->(undefined);
-
-export const useShowForm = () => {
-  const context = useContext(FormStatus);
-  if (context === undefined) {
-    throw new Error("useShowForm must be used within a ApplicationProvider");
-  }
-  return context;
-};
+import React, { useState } from "react";
+import { FormStatus } from "../Context/FormStatus";
+import { FigureStatusData } from "../Context/FigureStatusData";
 
 export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [showFormPrimitiv, setShowFormPrimitiv] = useState(true);
-
+  const [FigureData, setFigureData] = useState(true);
   return (
     <FormStatus.Provider
       value={{
@@ -35,7 +14,13 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
         setShowFormPrimitiv,
       }}
     >
-      {children}
+      <FigureStatusData.Provider value={
+        {
+          setFigureData
+        }
+      }>
+        {children}
+        </FigureStatusData.Provider>
     </FormStatus.Provider>
   );
 };
