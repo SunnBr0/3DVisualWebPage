@@ -5,10 +5,12 @@ interface DataType {
     width: number,
     height:number,
     countFigure:number,
-    setFigureData: Dispatch<SetStateAction<DataType>>;
-    
 }
 
-export const FigureStatusData = createContext<DataType|undefined>(undefined)
+interface FigureStatusDataContextType {
+    FigureData:DataType,
+    setFigureData: Dispatch<SetStateAction<DataType>>
+}
+export const FigureStatusData = createContext<FigureStatusDataContextType|undefined>(undefined)
 
 

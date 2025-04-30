@@ -6,7 +6,13 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [showFormPrimitiv, setShowFormPrimitiv] = useState(true);
-  const [FigureData, setFigureData] = useState(true);
+  const [FigureData, setFigureData] = useState({
+    typeFigure: "Box",
+    length: 50,
+    width: 50,
+    height: 50,
+    countFigure: 3,
+  });
   return (
     <FormStatus.Provider
       value={{
@@ -14,13 +20,9 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
         setShowFormPrimitiv,
       }}
     >
-      <FigureStatusData.Provider value={
-        {
-          setFigureData
-        }
-      }>
+      <FigureStatusData.Provider value={{ FigureData, setFigureData }}>
         {children}
-        </FigureStatusData.Provider>
+      </FigureStatusData.Provider>
     </FormStatus.Provider>
   );
 };

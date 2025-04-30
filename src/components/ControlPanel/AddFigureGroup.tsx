@@ -1,20 +1,49 @@
 import React, { useState } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { useFigureData } from "../Hooks/FigureData";
 
 const AddFigureGroup = () => {
-  const [type, setType] = useState("Box");
-  const [length, setLength] = useState(50);
-  const [width, setWidth] = useState(50);
-  const [height, setHeight] = useState(50);
-  const [number, setNumber] = useState(3);
+  const { FigureData, setFigureData } = useFigureData();
+  const { countFigure, height, length, typeFigure, width } = FigureData;
+  // console.log(FigureData)
+
+  // const [typeFigureItem, setType] = useState(typeFigure);
+  // const [lengthItem, setLength] = useState(length);
+  // const [widthItem, setWidth] = useState(width);
+  // const [heightItem, setHeight] = useState(height);
+  // const [countFigureItem, setNumber] = useState(countFigure);
+  const [typeFigureItem, setType] = useState("Box");
+  const [lengthItem, setLength] = useState(11);
+  const [widthItem, setWidth] = useState(1);
+  const [heightItem, setHeight] = useState(1);
+  const [countFigureItem, setNumber] = useState(1);
 
   const handleSubmit = () => {
-    console.log({ type, length, width, height, number });
-    // Здесь можно добавить логику для обработки данных
+    setFigureData((prev) => {
+      return {
+        ...prev,
+        countFigure: countFigureItem,
+        height: heightItem,
+        length: lengthItem,
+        typeFigure: typeFigureItem,
+        width: widthItem,
+      };
+    });
+    console.log(FigureData)
   };
 
   return (
-    <Paper elevation={3} sx={{ padding: 2, maxWidth: 400, margin: "auto" ,position:"relative",left:"350px",zIndex:"1"}}>
+    <Paper
+      elevation={3}
+      sx={{
+        padding: 2,
+        maxWidth: 400,
+        margin: "auto",
+        position: "relative",
+        left: "350px",
+        zIndex: "1",
+      }}
+    >
       <Typography variant="h6" gutterBottom>
         Add primitives group
       </Typography>
@@ -27,7 +56,7 @@ const AddFigureGroup = () => {
         >
           <Typography>Type:</Typography>
           <TextField
-            value={type}
+            value={typeFigureItem}
             onChange={(e) => setType(e.target.value)}
             variant="outlined"
             size="small"
@@ -44,8 +73,10 @@ const AddFigureGroup = () => {
         >
           <Typography>Length:</Typography>
           <TextField
-            value={length}
-            onChange={(e) => setLength(Number(e.target.value))}
+            value={lengthItem || ""}
+            onChange={(e) =>
+              setLength(e.target.value === "" ? 0 : Number(e.target.value))
+            }
             variant="outlined"
             size="small"
             type="number"
@@ -62,8 +93,10 @@ const AddFigureGroup = () => {
         >
           <Typography>Width:</Typography>
           <TextField
-            value={width}
-            onChange={(e) => setWidth(Number(e.target.value))}
+            value={widthItem || ""}
+            onChange={(e) =>
+              setWidth(e.target.value === "" ? 0 : Number(e.target.value))
+            }
             variant="outlined"
             size="small"
             type="number"
@@ -80,8 +113,10 @@ const AddFigureGroup = () => {
         >
           <Typography>Height:</Typography>
           <TextField
-            value={height}
-            onChange={(e) => setHeight(Number(e.target.value))}
+            value={heightItem || ""}
+            onChange={(e) =>
+              setHeight(e.target.value === "" ? 0 : Number(e.target.value))
+            }
             variant="outlined"
             size="small"
             type="number"
@@ -98,8 +133,10 @@ const AddFigureGroup = () => {
         >
           <Typography>Number:</Typography>
           <TextField
-            value={number}
-            onChange={(e) => setNumber(Number(e.target.value))}
+            value={countFigureItem || ""}
+            onChange={(e) =>
+              setNumber(e.target.value === "" ? 0 : Number(e.target.value))
+            }
             variant="outlined"
             size="small"
             type="number"
