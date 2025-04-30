@@ -30,7 +30,7 @@ const AddFigureGroup = () => {
         width: widthItem,
       };
     });
-    console.log(FigureData);
+    // console.log(FigureData);
   };
 
   return (
