@@ -1,14 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext ,useState} from "react";
 import { Box, Button, Paper } from "@mui/material";
 import { ItemFigurePanel } from "./ItemFigurePanel";
 import { ButtonsPanel } from "./ButtonsPanel";
 import AddFigureGroup from "./AddFigureGroup";
 import { useShowForm } from "../Hooks/ShowForm";
-
+import { useFigureData } from "../Hooks/FigureData";
+interface DataType {
+  typeFigure:string,
+  length: number,
+  width: number,
+  height:number,
+  countFigure:number,
+}
+interface arrayFigureForm{
+  arrayFigure:[DataType]
+}
 
 export const ControlPanel = () => {
   const { showFormPrimitiv } = useShowForm();
-
+  const {FigureData} = useFigureData()
+  const [arrayFigurePanel,setArrayFigurePanel] = useState<arrayFigureForm>([FigureData])
   return (
     <Paper
       elevation={3}

@@ -5,7 +5,7 @@ import { FigureStatusData } from "../Context/FigureStatusData";
 export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [showFormPrimitiv, setShowFormPrimitiv] = useState(true);
+  const [showFormPrimitiv, setShowFormPrimitiv] = useState(false);
   const [FigureData, setFigureData] = useState({
     typeFigure: "Box",
     length: 50,

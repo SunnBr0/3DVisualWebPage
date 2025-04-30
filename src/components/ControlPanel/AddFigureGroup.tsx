@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { useFigureData } from "../Hooks/FigureData";
+import { useShowForm } from "../Hooks/ShowForm";
 
 const AddFigureGroup = () => {
   const { FigureData, setFigureData } = useFigureData();
   const { countFigure, height, length, typeFigure, width } = FigureData;
   // console.log(FigureData)
-
+  const { setShowFormPrimitiv } = useShowForm();
   // const [typeFigureItem, setType] = useState(typeFigure);
   // const [lengthItem, setLength] = useState(length);
   // const [widthItem, setWidth] = useState(width);
@@ -29,7 +30,7 @@ const AddFigureGroup = () => {
         width: widthItem,
       };
     });
-    console.log(FigureData)
+    console.log(FigureData);
   };
 
   return (
@@ -150,6 +151,7 @@ const AddFigureGroup = () => {
         <Button
           variant="outlined"
           color="secondary"
+          onClick={()=>setShowFormPrimitiv((prev)=>!prev)}
           sx={{
             width: "100px",
           }}
