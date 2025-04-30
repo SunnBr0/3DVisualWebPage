@@ -4,17 +4,10 @@ import { useFigureData } from "../Hooks/FigureData";
 import { useShowForm } from "../Hooks/ShowForm";
 
 const AddFigureGroup = () => {
-  const { FigureData, setFigureData } = useFigureData();
-  const { countFigure, height, length, typeFigure, width } = FigureData;
-  // console.log(FigureData)
+  const {setFigureData } = useFigureData();
   const { setShowFormPrimitiv } = useShowForm();
-  // const [typeFigureItem, setType] = useState(typeFigure);
-  // const [lengthItem, setLength] = useState(length);
-  // const [widthItem, setWidth] = useState(width);
-  // const [heightItem, setHeight] = useState(height);
-  // const [countFigureItem, setNumber] = useState(countFigure);
   const [typeFigureItem, setType] = useState("Box");
-  const [lengthItem, setLength] = useState(11);
+  const [lengthItem, setLength] = useState(1);
   const [widthItem, setWidth] = useState(1);
   const [heightItem, setHeight] = useState(1);
   const [countFigureItem, setNumber] = useState(1);
@@ -28,9 +21,9 @@ const AddFigureGroup = () => {
         length: lengthItem,
         typeFigure: typeFigureItem,
         width: widthItem,
+        color: 
       };
     });
-    // console.log(FigureData);
   };
 
   return (
@@ -151,7 +144,7 @@ const AddFigureGroup = () => {
         <Button
           variant="outlined"
           color="secondary"
-          onClick={()=>setShowFormPrimitiv((prev)=>!prev)}
+          onClick={() => setShowFormPrimitiv((prev) => !prev)}
           sx={{
             width: "100px",
           }}
