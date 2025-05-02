@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography,Select,MenuItem } from "@mui/material";
 import { useFigureData } from "../Hooks/FigureData";
 import { useShowForm } from "../Hooks/ShowForm";
+import { DataType } from "../Context/FigureStatusData";
 
 const AddFigureGroup = () => {
-  const {setFigureData } = useFigureData();
+  const { setArrayFigure } = useFigureData();
   const { setShowFormPrimitiv } = useShowForm();
   const [typeFigureItem, setType] = useState("Box");
   const [lengthItem, setLength] = useState(1);
@@ -12,18 +13,40 @@ const AddFigureGroup = () => {
   const [heightItem, setHeight] = useState(1);
   const [countFigureItem, setNumber] = useState(1);
 
+  function getRandomPosition(
+    min: number,
+    max: number
+  ): [number, number, number] {
+    const randomValueX =
+      Math.round((Math.random() * (max - min) + min) * 10) / 10;
+    const randomValueY =
+      Math.round((Math.random() * (max - min) + min) * 10) / 10;
+    const randomValueZ =
+      Math.round((Math.random() * (max - min) + min) * 10) / 10;
+    return [randomValueX, randomValueY, randomValueZ];
+  }
+  function getRandomColor() {
+    const randomColor = ["red", "green", "gray", "yellow"];
+    const randIndex = Math.floor(Math.random() * randomColor.length);
+    return randomColor[randIndex];
+  }
   const handleSubmit = () => {
-    setFigureData((prev) => {
-      return {
-        ...prev,
+    const newFigures: DataType[] = [];
+
+    for (let count = 0; count < countFigureItem; count++) {
+      newFigures.push({
         countFigure: countFigureItem,
         height: heightItem,
         length: lengthItem,
         typeFigure: typeFigureItem,
         width: widthItem,
-        color: 
-      };
-    });
+        color: getRandomColor(),
+        position: getRandomPosition(-10, 10),
+      });
+    }
+    setArrayFigure((prev) => ({
+      arrayFigure: [...prev.arrayFigure, ...newFigures],
+    }));
   };
 
   return (
@@ -49,15 +72,16 @@ const AddFigureGroup = () => {
           gap={1}
         >
           <Typography>Type:</Typography>
-          <TextField
+          <Select
             value={typeFigureItem}
             onChange={(e) => setType(e.target.value)}
             variant="outlined"
             size="small"
-            style={{
-              width: "190px",
-            }}
-          />
+            style={{ width: "190px" }}
+          >
+            <MenuItem value="Box">Box</MenuItem>
+            <MenuItem value="Pyramid">Pyramid</MenuItem>
+          </Select>
         </Box>
         <Box
           display="flex"

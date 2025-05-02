@@ -12,8 +12,8 @@ export interface arrayFigureForm {
   arrayFigure: DataType[];
 }
 interface FigureStatusDataContextType {
-    arrayFigurePanel: arrayFigureForm | null;
-  setFigureData: Dispatch<SetStateAction<DataType | null>>;
+    arrayFigurePanel: arrayFigureForm;
+    setArrayFigure: Dispatch<SetStateAction<arrayFigureForm>>;
 }
 export const FigureStatusData = createContext<
 FigureStatusDataContextType | undefined

@@ -10,6 +10,7 @@ import { useFigureData } from "../Hooks/FigureData";
 export const ControlPanel = () => {
   const { showFormPrimitiv } = useShowForm();
   const { arrayFigurePanel } = useFigureData();
+  console.log(arrayFigurePanel)
   if (!arrayFigurePanel) {
     return <div>Loading...</div>; // или другой UI для отображения загрузки
   }
@@ -29,9 +30,9 @@ export const ControlPanel = () => {
         {arrayFigurePanel.arrayFigure.map((figure, index) => (
           <ItemFigurePanel
             key={index}
-            color="red"
+            color={figure.color}
             title={`Box ${index}`}
-            position="1, 0, 0"
+            position={String(figure.position)}
           />
         ))}
       </div>

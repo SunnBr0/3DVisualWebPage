@@ -7,17 +7,16 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [showFormPrimitiv, setShowFormPrimitiv] = useState(false);
-  const [FigureData, setFigureData] = useState<DataType | null>(null);
-  const [arrayFigurePanel, setArrayFigurePanel] = useState<arrayFigureForm>({
+  const [arrayFigurePanel, setArrayFigure] = useState<arrayFigureForm>({
     arrayFigure: [],
   });
-  useEffect(() => {
-    if (FigureData !== null) {
-      setArrayFigurePanel((prev) => ({
-        arrayFigure: [...prev.arrayFigure, FigureData],
-      }));
-    }
-  }, [FigureData]); // Зависимость от FigureData
+  // useEffect(() => {
+  //   if (FigureData !== null) {
+  //     setArrayFigurePanel((prev) => ({
+  //       arrayFigure: [...prev.arrayFigure, FigureData],
+  //     }));
+  //   }
+  // }, [FigureData]); // Зависимость от FigureData
   return (
     <FormStatus.Provider
       value={{
@@ -25,7 +24,7 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
         setShowFormPrimitiv,
       }}
     >
-      <FigureStatusData.Provider value={{ arrayFigurePanel, setFigureData }}>
+      <FigureStatusData.Provider value={{ arrayFigurePanel, setArrayFigure}}>
         {children}
       </FigureStatusData.Provider>
     </FormStatus.Provider>
