@@ -16,9 +16,9 @@ const AddFigureGroup = () => {
   const { setArrayFigure } = useFigureData();
   const { setShowFormPrimitiv } = useShowForm();
   const [typeFigureItem, setType] = useState("Box");
-  const [lengthItem, setLength] = useState(1);
-  const [widthItem, setWidth] = useState(1);
-  const [heightItem, setHeight] = useState(1);
+  const [lengthItem, setLength] = useState(10);
+  const [widthItem, setWidth] = useState(10);
+  const [heightItem, setHeight] = useState(10);
   const [countFigureItem, setNumber] = useState(1);
 
   function getRandomPosition(
@@ -49,7 +49,7 @@ const AddFigureGroup = () => {
         typeFigure: typeFigureItem,
         width: widthItem,
         color: getRandomColor(),
-        position: getRandomPosition(-10, 10),
+        position: getRandomPosition(-100, 100),
       });
     }
     setArrayFigure((prev) => ({
