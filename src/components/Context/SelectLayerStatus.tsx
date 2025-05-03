@@ -13,6 +13,7 @@ interface SelectLayerStatus {
   setSelectFigure: Dispatch<SetStateAction<EmptyDataType>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SelectLayerStatus = createContext<SelectLayerStatus | undefined>(
   undefined
 );
