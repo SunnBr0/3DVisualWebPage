@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { ItemFigurePanel } from "./ItemFigurePanel";
 import { ButtonsPanel } from "./ButtonsPanel";
 import AddFigureGroup from "./AddFigureGroup";
 import { useShowForm } from "../Hooks/ShowForm";
 import { useFigureData } from "../Hooks/FigureData";
-
+import { useSelectFigure } from "../Hooks/SelectFigure";
 
 export const ControlPanel = () => {
   const { showFormPrimitiv } = useShowForm();
   const { arrayFigurePanel } = useFigureData();
-  console.log(arrayFigurePanel)
+  const { selectFigure, setSelectFigure } = useSelectFigure();
+  console.log(arrayFigurePanel);
   if (!arrayFigurePanel) {
     return <div>Loading...</div>; // или другой UI для отображения загрузки
   }
@@ -26,13 +26,27 @@ export const ControlPanel = () => {
         justifyContent: "space-between",
       }}
     >
-      <div>
+      <div
+        style={{
+          flex: 1, // Растягиваем div, чтобы он занимал всё доступное пространство
+          overflowY: "auto", // Включаем вертикальный скролл
+          padding: "8px", // Добавляем отступы для контента
+        }}
+      >
         {arrayFigurePanel.arrayFigure.map((figure, index) => (
           <ItemFigurePanel
             key={index}
             color={figure.color}
             title={`Box ${index}`}
             position={String(figure.position)}
+            isSelected={selectFigure === figure}
+            onClick={() => {
+              if (selectFigure === figure) {
+                setSelectFigure({});
+              } else {
+                setSelectFigure(figure);
+              }
+            }}
           />
         ))}
       </div>

@@ -4,8 +4,10 @@ import { OrbitControls } from "@react-three/drei";
 import { useFigureData } from "../Hooks/FigureData";
 import {Box} from "./TypeFigure/Box"
 import {Pyramid} from "./TypeFigure/Pyramid"
+import { useSelectFigure } from "../Hooks/SelectFigure";
 export const SceneView = () => {
   const { arrayFigurePanel } = useFigureData();
+  const { selectFigure} = useSelectFigure();
   if (!arrayFigurePanel) {
     return <div>Loading...</div>; // или другой UI для отображения загрузки
   }
@@ -18,7 +20,7 @@ export const SceneView = () => {
               <Box
                 key={`${index}-${count}`} // Уникальный ключ для каждого элемента
                 position={figure.position}
-                color={figure.color}
+                color={selectFigure ===figure ? "blue": figure.color}
                 size={[figure.length, figure.height, figure.width]}
               />
             );
@@ -27,7 +29,7 @@ export const SceneView = () => {
               <Pyramid
                 key={`${index}-${count}`} // Уникальный ключ для каждого элемента
                 position={figure.position}
-                color={figure.color}
+                color={selectFigure ===figure ? "blue": figure.color}
                 size={[figure.length, figure.height, figure.width]}
               />
             );

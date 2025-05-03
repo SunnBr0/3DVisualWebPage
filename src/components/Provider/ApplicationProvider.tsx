@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormStatus } from "../Context/FormStatus";
-import { arrayFigureForm, DataType, FigureStatusData } from "../Context/FigureStatusData";
-
+import { arrayFigureForm, FigureStatusData } from "../Context/FigureStatusData";
+import { SelectLayerStatus, EmptyDataType } from "../Context/SelectLayerStatus";
 
 export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -10,13 +10,7 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   const [arrayFigurePanel, setArrayFigure] = useState<arrayFigureForm>({
     arrayFigure: [],
   });
-  // useEffect(() => {
-  //   if (FigureData !== null) {
-  //     setArrayFigurePanel((prev) => ({
-  //       arrayFigure: [...prev.arrayFigure, FigureData],
-  //     }));
-  //   }
-  // }, [FigureData]); // Зависимость от FigureData
+  const [selectFigure, setSelectFigure] = useState<EmptyDataType>({});
   return (
     <FormStatus.Provider
       value={{
@@ -24,8 +18,10 @@ export const ApplicationProvider: React.FC<{ children: React.ReactNode }> = ({
         setShowFormPrimitiv,
       }}
     >
-      <FigureStatusData.Provider value={{ arrayFigurePanel, setArrayFigure}}>
-        {children}
+      <FigureStatusData.Provider value={{ arrayFigurePanel, setArrayFigure }}>
+        <SelectLayerStatus.Provider value={{ selectFigure, setSelectFigure }}>
+          {children}
+        </SelectLayerStatus.Provider>
       </FigureStatusData.Provider>
     </FormStatus.Provider>
   );

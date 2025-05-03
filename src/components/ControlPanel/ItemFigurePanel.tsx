@@ -5,22 +5,31 @@ interface ItemFigurePanelProps {
   color: string;
   title: string;
   position: string;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
 export const ItemFigurePanel: React.FC<ItemFigurePanelProps> = ({
   color,
   title,
   position,
+  isSelected,
+  onClick,
 }) => {
   return (
-    <Box display="flex" alignItems="center"  sx={{
+    <Box
+      display="flex"
+      alignItems="center"
+      sx={{
         padding: "10px",
-        border: "1px solid gray",
-        backgroundColor: "white", // Основной цвет фона
+        border: isSelected ? "2px solid blue" : "1px solid gray",
+        backgroundColor: isSelected ? "blue" : "white", // Основной цвет фона
         "&:hover": {
-          backgroundColor: "#f0f0f0", // Цвет фона при наведении
+          backgroundColor: isSelected ? "blue" : "#f0f0f0", // Цвет фона при наведении
         },
-      }}>
+      }}
+      onClick={onClick}
+    >
       <Box flexGrow={1}>
         <Typography variant="subtitle1">{title}</Typography>
         <Typography variant="body2">position: ({position})</Typography>

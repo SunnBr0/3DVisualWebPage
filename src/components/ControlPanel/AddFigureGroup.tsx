@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Box, Button, Paper, TextField, Typography,Select,MenuItem } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Button,
+  Paper,
+  TextField,
+  Typography,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { useFigureData } from "../Hooks/FigureData";
 import { useShowForm } from "../Hooks/ShowForm";
 import { DataType } from "../Context/FigureStatusData";
@@ -47,6 +55,7 @@ const AddFigureGroup = () => {
     setArrayFigure((prev) => ({
       arrayFigure: [...prev.arrayFigure, ...newFigures],
     }));
+    setShowFormPrimitiv((prev) => !prev);
   };
 
   return (
@@ -55,9 +64,9 @@ const AddFigureGroup = () => {
       sx={{
         padding: 2,
         maxWidth: 400,
-        margin: "auto",
-        position: "relative",
+        position: "absolute",
         left: "350px",
+        top: "300px",
         zIndex: "1",
       }}
     >
