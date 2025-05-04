@@ -29,7 +29,7 @@ export const ControlPanel = () => {
           }}
         />
       )),
-    [arrayFigurePanel, selectFigure]
+    [arrayFigurePanel, selectFigure,setSelectFigure]
   );
   console.log(arrayFigurePanel);
   if (!arrayFigurePanel) {
