@@ -5,16 +5,16 @@ export interface DataType {
   width: number;
   height: number;
   countFigure: number;
-  color:string;
-  position:[number,number,number]
+  color: string;
+  position: [number, number, number];
 }
 export interface arrayFigureForm {
   arrayFigure: DataType[];
 }
 interface FigureStatusDataContextType {
-    arrayFigurePanel: arrayFigureForm;
-    setArrayFigure: Dispatch<SetStateAction<arrayFigureForm>>;
+  arrayFigurePanel: arrayFigureForm;
+  setArrayFigure: Dispatch<SetStateAction<arrayFigureForm>>;
 }
 export const FigureStatusData = createContext<
-FigureStatusDataContextType | undefined
+  FigureStatusDataContextType | undefined
 >(undefined);

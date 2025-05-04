@@ -8,12 +8,11 @@ export interface EmptyDataType {
   color?: string;
   position?: [number, number, number];
 }
-interface SelectLayerStatus {
+interface SelectLayerStatusContext {
   selectFigure: EmptyDataType;
   setSelectFigure: Dispatch<SetStateAction<EmptyDataType>>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const SelectLayerStatus = createContext<SelectLayerStatus | undefined>(
-  undefined
-);
+export const SelectLayerStatus = createContext<
+  SelectLayerStatusContext | undefined
+>(undefined);

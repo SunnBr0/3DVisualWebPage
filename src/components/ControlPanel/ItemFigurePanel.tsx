@@ -23,9 +23,9 @@ export const ItemFigurePanel: React.FC<ItemFigurePanelProps> = ({
       sx={{
         padding: "10px",
         border: isSelected ? "2px solid blue" : "1px solid gray",
-        backgroundColor: isSelected ? "blue" : "white", // Основной цвет фона
+        backgroundColor: isSelected ? "blue" : "white",
         "&:hover": {
-          backgroundColor: isSelected ? "blue" : "#f0f0f0", // Цвет фона при наведении
+          backgroundColor: isSelected ? "blue" : "#f0f0f0", 
         },
       }}
       onClick={onClick}

@@ -5,14 +5,35 @@ import AddFigureGroup from "./AddFigureGroup";
 import { useShowForm } from "../Hooks/ShowForm";
 import { useFigureData } from "../Hooks/FigureData";
 import { useSelectFigure } from "../Hooks/SelectFigure";
+import { useMemo } from "react";
 
 export const ControlPanel = () => {
   const { showFormPrimitiv } = useShowForm();
   const { arrayFigurePanel } = useFigureData();
   const { selectFigure, setSelectFigure } = useSelectFigure();
+  const listArray = useMemo(
+    () =>
+      arrayFigurePanel.arrayFigure.map((figure, index) => (
+        <ItemFigurePanel
+          key={index}
+          color={figure.color}
+          title={`Box ${index}`}
+          position={String(figure.position)}
+          isSelected={selectFigure === figure}
+          onClick={() => {
+            if (selectFigure === figure) {
+              setSelectFigure({});
+            } else {
+              setSelectFigure(figure);
+            }
+          }}
+        />
+      )),
+    [arrayFigurePanel, selectFigure]
+  );
   console.log(arrayFigurePanel);
   if (!arrayFigurePanel) {
-    return <div>Loading...</div>; // или другой UI для отображения загрузки
+    return <div>Loading...</div>;
   }
   return (
     <Paper
@@ -28,27 +49,12 @@ export const ControlPanel = () => {
     >
       <div
         style={{
-          flex: 1, // Растягиваем div, чтобы он занимал всё доступное пространство
-          overflowY: "auto", // Включаем вертикальный скролл
-          padding: "8px", // Добавляем отступы для контента
+          flex: 1,
+          overflowY: "auto",
+          padding: "8px",
         }}
       >
-        {arrayFigurePanel.arrayFigure.map((figure, index) => (
-          <ItemFigurePanel
-            key={index}
-            color={figure.color}
-            title={`Box ${index}`}
-            position={String(figure.position)}
-            isSelected={selectFigure === figure}
-            onClick={() => {
-              if (selectFigure === figure) {
-                setSelectFigure({});
-              } else {
-                setSelectFigure(figure);
-              }
-            }}
-          />
-        ))}
+        {listArray}
       </div>
       <Box
         sx={{

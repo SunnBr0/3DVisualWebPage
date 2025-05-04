@@ -1,8 +1,8 @@
 import React from "react";
 export interface BoxProps {
-  position: [number, number, number]; // Массив из трех чисел
-  rotation?: [number, number, number]; // Необязательное вращение
-  scale?: [number, number, number]; // Необязательный масштаб
+  position: [number, number, number];
+  rotation?: [number, number, number];
+  scale?: [number, number, number];
   color?: string;
   size?: [number, number, number];
 }
@@ -16,8 +16,8 @@ export const Box: React.FC<BoxProps> = ({
 }) => {
   return (
     <mesh position={position} rotation={rotation} scale={scale} {...props}>
-      <boxGeometry args={size} /> {/* Размеры куба */}
-      <meshBasicMaterial color={color} /> {/* Цвет куба */}
+      <boxGeometry args={size} />
+      <meshBasicMaterial color={color} />
     </mesh>
   );
 };
